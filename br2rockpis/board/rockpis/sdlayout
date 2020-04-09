@@ -1,0 +1,5 @@
+dd if=idbloader.img of=sdb seek=64
+dd if=uboot.img of=sdb seek=16384
+dd if=trust.img of=sdb seek=24576
+dd if=boot.img of=sdb seek=32768
+dd if=rootfs.img of=sdb seek=262144
