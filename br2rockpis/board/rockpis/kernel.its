@@ -1,0 +1,78 @@
+/dts-v1/;
+
+/ {
+	description = "Rock Pi S";
+	#address-cells = <1>;
+
+	images {
+		kernel@0 {
+			data = /incbin/("../../images/Image");
+			type = "kernel";
+			arch = "arm64";
+			os = "linux";
+			compression = "none";
+			load = <0x280000>;
+                        entry = <0x280000>;
+			hash@1 {
+				algo = "crc32";
+			};
+			hash@2 {
+				algo = "sha1";
+			};
+		};
+		ramdisk@0 {
+			data = /incbin/("../../images/rootfs.cpio.xz");
+			type = "ramdisk";
+			arch = "arm64";
+			os = "linux";
+			compression = "none";
+			load = <0x04000000>;
+			hash@1 {
+				algo = "crc32";
+			};
+			hash@2 {
+				algo = "sha1";
+			};
+		};
+		fdt@0 {
+			data = /incbin/("../../images/rk3308-rock-pi-s.dtb");
+			type = "flat_dt";
+			arch = "arm64";
+			compression = "none";
+			load = <0x01f00000>;
+			hash@1 {
+				algo = "crc32";
+			};
+			hash@2 {
+				algo = "sha1";
+			};
+		};
+		/* overlays */
+		ovly@0 {
+			data = /incbin/("../../images/rk3308-console-on-uart0.dtbo");
+			type = "flat_dt";
+			arch = "arm64";
+			compression = "none";
+			load = <0x3100000>;
+			hash@1 {
+				algo = "crc32";
+			};
+			hash@2 {
+				algo = "sha1";
+			};
+		};
+
+	};
+
+	configurations {
+		default = "normal";
+		normal {
+			kernel = "kernel@0";
+			ramdisk = "ramdisk@0";
+			fdt = "fdt@0";
+		};
+		console_uart0 {
+			fdt = "ovly@0";
+		};
+	};
+};

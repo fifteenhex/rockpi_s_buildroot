@@ -15,6 +15,9 @@ buildroot_menuconfig:
 	$(BUILDROOT_ARGS) $(MAKE) -C buildroot menuconfig
 	$(BUILDROOT_ARGS) $(MAKE) -C buildroot savedefconfig
 
+buildroot_clean:
+	$(BUILDROOT_ARGS) $(MAKE) -C buildroot clean
+
 rk_dumpflashinfo:
 	$(RKDEVELOPTOOL) db br2rockpis/board/rockpis/rk3308_loader_uart0_m0_emmc_port_support_sd_20190717.bin
 	sleep 2
