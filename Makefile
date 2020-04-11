@@ -11,11 +11,11 @@ buildroot:
 	$(BUILDROOT_ARGS) $(MAKE) -C buildroot rockpis_defconfig
 	$(BUILDROOT_ARGS) $(MAKE) -C buildroot
 
-buildroot_menuconfig:
+buildroot-menuconfig:
 	$(BUILDROOT_ARGS) $(MAKE) -C buildroot menuconfig
 	$(BUILDROOT_ARGS) $(MAKE) -C buildroot savedefconfig
 
-buildroot_clean:
+buildroot-clean:
 	$(BUILDROOT_ARGS) $(MAKE) -C buildroot clean
 
 rk_dumpflashinfo:
