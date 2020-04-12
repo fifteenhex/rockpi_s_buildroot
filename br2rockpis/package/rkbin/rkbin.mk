@@ -11,6 +11,7 @@ RKBIN_INSTALL_IMAGES = YES
 
 define RKBIN_INSTALL_IMAGES_CMDS
 	cp $(@D)/bin/rk33/rk3308_ddr_589MHz_uart2_m1_v1.30.bin $(BINARIES_DIR)
+	cp $(@D)/bin/rk33/rk3308_miniloader_v1.19.bin $(BINARIES_DIR)
 	cp $(@D)/bin/rk33/rk3308_bl31_v2.22.elf $(BINARIES_DIR)
 endef
 

@@ -12,7 +12,8 @@ output/build/rkbin-aae5f990fcf0dd604f7955cca7666b904d48ef09/tools/loaderimage \
 	0x600000 \
 	--size 1024 1
 
-#/media/fatboy/coding/rockpi_s_buildroot/br2rockpis/board/rockpis/mkidbloaderimg.sh
+$BR2_EXTERNAL_ROCKPIS_PATH/board/rockpis/mkidbloaderimg.sh
+$BR2_EXTERNAL_ROCKPIS_PATH/board/rockpis/mktrustimg.sh
 
 support/scripts/genimage.sh -c $BR2_EXTERNAL_ROCKPIS_PATH/board/rockpis/genimage.cfg
 

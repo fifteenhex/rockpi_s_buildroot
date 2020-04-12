@@ -2,3 +2,6 @@
 	path = buildroot
 	url = https://github.com/fifteenhex/buildroot.git
 	branch = rockpis
+[submodule "br2autosshkey"]
+	path = br2autosshkey
+	url = https://github.com/fifteenhex/br2autosshkey.git

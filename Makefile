@@ -1,9 +1,9 @@
 BUILDROOT_ARGS=BR2_DEFCONFIG=../br2rockpis/configs/rockpis_defconfig \
-        BR2_EXTERNAL="../br2rockpis"
+        BR2_EXTERNAL="../br2rockpis ../br2autosshkey"
 
 RKDEVELOPTOOL=sudo ./buildroot/output/host/bin/rkdeveloptool
 
-.PHONY: buildroot
+.PHONY: buildroot clean
 
 all: buildroot
 
@@ -31,3 +31,5 @@ uboot_loadviausb:
 	$(RKDEVELOPTOOL) wl 0x40 buildroot/output/images/idbloader.img_sd
 	sleep 2
 	$(RKDEVELOPTOOL) rd
+
+clean:	buildroot-clean
