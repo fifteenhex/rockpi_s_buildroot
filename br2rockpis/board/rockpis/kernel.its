@@ -47,21 +47,6 @@
 				algo = "sha1";
 			};
 		};
-		/* overlays */
-		ovly@0 {
-			data = /incbin/("../../images/rk3308-console-on-uart0.dtb");
-			type = "flat_dt";
-			arch = "arm64";
-			compression = "none";
-			load = <0x3100000>;
-			hash@1 {
-				algo = "crc32";
-			};
-			hash@2 {
-				algo = "sha1";
-			};
-		};
-
 	};
 
 	configurations {
@@ -70,9 +55,6 @@
 			kernel = "kernel@0";
 			ramdisk = "ramdisk@0";
 			fdt = "fdt@0";
-		};
-		console_uart0 {
-			fdt = "ovly@0";
 		};
 	};
 };
