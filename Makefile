@@ -18,6 +18,13 @@ buildroot-menuconfig:
 buildroot-clean:
 	$(BUILDROOT_ARGS) $(MAKE) -C buildroot clean
 
+linux-update:
+	rm -f buildroot/dl/linux/linux-rockpis.tar.gz
+	rm -rf buildroot/output/build/linux-rockpis/
+	git -C buildroot/dl/linux/git checkout master
+	git -C buildroot/dl/linux/git branch -D rockpis
+	git -C buildroot/dl/linux/git fetch
+
 linux-menuconfig:
 	$(BUILDROOT_ARGS) $(MAKE) -C buildroot linux-menuconfig
 
