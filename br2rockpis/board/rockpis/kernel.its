@@ -49,7 +49,7 @@
 		};
 		/* overlays */
 		ovly@0 {
-			data = /incbin/("../../images/rk3308-console-on-uart0.dtbo");
+			data = /incbin/("../../images/rk3308-console-on-uart0.dtb");
 			type = "flat_dt";
 			arch = "arm64";
 			compression = "none";

@@ -2,8 +2,8 @@
 
 set -e
 
-cp output/build/linux-stable-4.4-rockpis/arch/arm64/boot/dts/rockchip/overlay/rk3308-console-on-uart0.dtbo \
-	output/images
+#cp output/build/linux-stable-4.4-rockpis/arch/arm64/boot/dts/rockchip/overlay/rk3308-console-on-uart0.dtbo \
+#	output/images
 
 output/build/rkbin-aae5f990fcf0dd604f7955cca7666b904d48ef09/tools/loaderimage \
 	--pack \
