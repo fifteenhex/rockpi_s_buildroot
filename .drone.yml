@@ -1,0 +1,68 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+concurrency:
+  limit: 1
+
+steps:
+
+- name: restore-cache
+  image: drillster/drone-volume-cache
+  volumes:
+  - name: cache
+    path: /cache
+  settings:
+    restore: true
+    mount:
+      - ./dl
+
+- name: createimage
+  image: docker:latest
+  volumes:
+  - name: docker_sock
+    path: /var/run/docker.sock
+  commands:
+  - ls -l ./
+  - ls -l /var/run/
+  - docker build -t rockpis_buildroot .
+  - chmod -R o+rw ./
+
+- name: bootstrap
+  image: rockpis_buildroot
+  pull: if-not-exists
+  commands:
+  - make bootstrap
+
+- name: download
+  image: rockpis_buildroot
+  pull: if-not-exists
+  commands:
+  - make buildroot_dl
+
+- name: rebuild-cache
+  image: drillster/drone-volume-cache
+  volumes:
+  - name: cache
+    path: /cache
+  settings:
+    rebuild: true
+    mount:
+      - ./dl
+
+- name: dobuild
+  image: rockpis_buildroot
+  pull: if-not-exists
+  commands:
+  - make
+
+volumes:
+  - name: cache
+    host: 
+      path: /tmp/rockpis_buildroot_cache
+  - name: docker_sock
+    host:
+      path: /var/run/docker.sock
+
+...

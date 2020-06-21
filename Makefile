@@ -3,9 +3,19 @@ BUILDROOT_ARGS=BR2_DEFCONFIG=../br2rockpis/configs/rockpis_defconfig \
 
 RKDEVELOPTOOL=sudo ./buildroot/output/host/bin/rkdeveloptool
 
-.PHONY: buildroot clean
+.PHONY: buildroot \
+	bootstrap \
+	clean
 
 all: buildroot
+
+bootstrap:
+	git submodule init
+	git submodule update
+
+buildroot_dl:
+	$(BUILDROOT_ARGS) $(MAKE) -C buildroot rockpis_defconfig
+	$(BUILDROOT_ARGS) $(MAKE) -C buildroot source
 
 buildroot:
 	$(BUILDROOT_ARGS) $(MAKE) -C buildroot rockpis_defconfig
