@@ -20,20 +20,6 @@
 				algo = "sha1";
 			};
 		};
-		ramdisk@0 {
-			data = /incbin/("../../images/rootfs.cpio.xz");
-			type = "ramdisk";
-			arch = "arm64";
-			os = "linux";
-			compression = "none";
-			load = <0x04000000>;
-			hash@1 {
-				algo = "crc32";
-			};
-			hash@2 {
-				algo = "sha1";
-			};
-		};
 		fdt@0 {
 			data = /incbin/("../../images/rk3308-rock-pi-s.dtb");
 			type = "flat_dt";
@@ -53,7 +39,6 @@
 		default = "normal";
 		normal {
 			kernel = "kernel@0";
-			ramdisk = "ramdisk@0";
 			fdt = "fdt@0";
 		};
 	};

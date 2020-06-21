@@ -1,0 +1,5 @@
+[Service]
+type=oneshot
+ExecStart=/opt/usb_gadget.sh
+RemainAfterExit=true
+StandardOutput=journal

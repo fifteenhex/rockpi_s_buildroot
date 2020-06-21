@@ -1,0 +1,10 @@
+[Unit]
+Description=DNS cacher and DHCP server
+After=syslog.target network.target
+
+[Service]
+ExecStart=/usr/sbin/dnsmasq -k
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

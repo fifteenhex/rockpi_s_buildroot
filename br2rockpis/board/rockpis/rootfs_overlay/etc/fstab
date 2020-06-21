@@ -9,4 +9,5 @@ sysfs		/sys		sysfs	defaults	0	0
 
 /dev/mmcblk0p4	/boot		vfat	defaults	0	0
 
+tmpfs           /home/weewee/mtp	tmpfs		mode=0755	0       0
 configfs	/sys/kernel/config	configfs	defaults	0	0
