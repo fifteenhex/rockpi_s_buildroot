@@ -1,23 +1,29 @@
+DLDIR=$(PWD)/dl
 BUILDROOT_ARGS=BR2_DEFCONFIG=../br2rockpis/configs/rockpis_defconfig \
-        BR2_EXTERNAL="../br2rockpis ../br2autosshkey"
+        BR2_EXTERNAL="../br2rockpis ../br2autosshkey" \
+	BR2_DL_DIR=$(DLDIR)
 
 RKDEVELOPTOOL=sudo ./buildroot/output/host/bin/rkdeveloptool
 
 .PHONY: buildroot \
 	bootstrap \
-	clean
+	clean \
+	dldir
 
 all: buildroot
+
+dldir:
+	mkdir -p $(DLDIR)
 
 bootstrap:
 	git submodule init
 	git submodule update
 
-buildroot_dl:
+buildroot_dl: dldir
 	$(BUILDROOT_ARGS) $(MAKE) -C buildroot rockpis_defconfig
 	$(BUILDROOT_ARGS) $(MAKE) -C buildroot source
 
-buildroot:
+buildroot: dldir
 	$(BUILDROOT_ARGS) $(MAKE) -C buildroot rockpis_defconfig
 	$(BUILDROOT_ARGS) $(MAKE) -C buildroot
 
